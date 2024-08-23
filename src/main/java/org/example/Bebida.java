@@ -5,9 +5,23 @@ public class Bebida extends Producto {
     private boolean importado;
 
     public Bebida(String id, String descripcion, int cantidad, double precio, double porcentajeGanancia, double graduacionAlcoholica, boolean importado) {
-        super(validarId(id, "AC"), descripcion, cantidad, precio, porcentajeGanancia);
+        super(validarId(id, "AC"), descripcion, cantidad, precio, validarPorcentajeGanancia(porcentajeGanancia, 20));
         this.graduacionAlcoholica = graduacionAlcoholica;
         this.importado = importado;
+    }
+
+    private static String validarId(String id, String expectedPrefix) {
+        if (!id.startsWith(expectedPrefix) || id.length() != 5 || !id.substring(2).matches("\\d{3}")) {
+            throw new IllegalArgumentException("El ID debe respetar el formato " + expectedPrefix + "XXX, donde XXX son dígitos.");
+        }
+        return id;
+    }
+
+    private static double validarPorcentajeGanancia(double porcentajeGanancia, double maximo) {
+        if (porcentajeGanancia < 0 || porcentajeGanancia > maximo) {
+            throw new IllegalArgumentException("El porcentaje de ganancia debe ser entre 0 y " + maximo + "%");
+        }
+        return porcentajeGanancia;
     }
 
     public double getGraduacionAlcoholica() {
@@ -18,7 +32,8 @@ public class Bebida extends Producto {
         this.graduacionAlcoholica = graduacionAlcoholica;
     }
 
-    public boolean isImportado() {
+    @Override
+    public boolean esImportado() {
         return importado;
     }
 
@@ -27,10 +42,17 @@ public class Bebida extends Producto {
     }
 
     @Override
-    public boolean esImportado() {
-        return importado;
+    public double calcularPrecioVenta() {
+        double precioVenta = getPrecio();
+        double discount = precioVenta * getPorcentajeGanancia() / 100;
+        precioVenta -= discount; // Apply discount
+        if (esImportado()) {
+            precioVenta *= 1.12; // Add 12% tax for imported products
+        }
+        return precioVenta;
     }
 
+    // Método para calcular calorías
     public double calcularCalorias() {
         if (graduacionAlcoholica <= 2) {
             return graduacionAlcoholica;
@@ -39,12 +61,5 @@ public class Bebida extends Producto {
         } else {
             return graduacionAlcoholica * 1.5;
         }
-    }
-
-    private static String validarId(String id, String expectedPrefix) {
-        if (!id.startsWith(expectedPrefix) || id.length() != 5 || !id.substring(2).matches("\\d{3}")) {
-            throw new IllegalArgumentException("El ID debe respetar el formato " + expectedPrefix + "XXX, donde XXX son dígitos.");
-        }
-        return id;
     }
 }

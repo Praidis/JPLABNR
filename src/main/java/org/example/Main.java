@@ -30,8 +30,8 @@ public class Main {
 
         // Generar productos automáticamente
         Bebida bebida = new Bebida("AC001", "Cerveza", 10, 50.0, 20.0, 5.0, true);
-        Envasado envase = new Envasado("AB001", "Agua", 20, 30.0, 20.0, "500g", false);
-        Limpieza limpieza = new Limpieza("AZ001", "Detergente", 15, 35.0, 35.0, "Hogar");
+        Envasado envase = new Envasado("AB001", "Agua", 20, 30.0, 15.0, "500g", false);
+        Limpieza limpieza = new Limpieza("AZ001", "Detergente", 15, 35.0, 10.0, "Hogar");
 
         tienda.agregarProducto(bebida);
         tienda.agregarProducto(envase);
