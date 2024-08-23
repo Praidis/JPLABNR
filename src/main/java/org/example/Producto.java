@@ -1,6 +1,5 @@
 package org.example;
 
-
 public abstract class Producto {
     private String id;
     private String descripcion;
@@ -18,6 +17,7 @@ public abstract class Producto {
         this.disponible = true;
     }
 
+    // Getters y setters
     public String getId() {
         return id;
     }
@@ -66,17 +66,17 @@ public abstract class Producto {
         this.disponible = disponible;
     }
 
+    // Método para calcular el precio de venta
     public double calcularPrecioVenta() {
-        double precioConGanancia = precio + (precio * porcentajeGanancia / 100);
-
-        return precioConGanancia;
+        return precio + (precio * porcentajeGanancia / 100);
     }
 
+    // Método para aplicar un descuento
     public double aplicarDescuento(double porcentajeDescuento) {
-        double precioVenta = calcularPrecioVenta();
-        return precioVenta - (precioVenta * porcentajeDescuento / 100);
+        return calcularPrecioVenta() - (calcularPrecioVenta() * porcentajeDescuento / 100);
     }
 
+    // Método para determinar si es importado (se puede sobreescribir)
     public boolean esImportado() {
         return false;
     }

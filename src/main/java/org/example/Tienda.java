@@ -136,9 +136,9 @@ public class Tienda {
         System.out.println("Stock de la tienda:");
         for (Producto producto : productos) {
             System.out.println(producto.getDescripcion() + ": " + producto.getCantidad() + " unidades");
+
         }
     }
-
     public void imprimirDetalleVenta(Producto producto, int cantidad) {
         double precioVenta = producto.calcularPrecioVenta();
 
@@ -162,4 +162,5 @@ public class Tienda {
                 .sorted((p1, p2) -> Double.compare(p1.aplicarDescuento(porcentajeDescuento), p2.aplicarDescuento(porcentajeDescuento)))
                 .collect(Collectors.toList());
     }
+
 }
