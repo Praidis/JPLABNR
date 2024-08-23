@@ -90,21 +90,26 @@ public class Main {
             Producto producto = tienda.getProductos().get(i);
             double precioVenta = producto.calcularPrecioVenta();
             double descuento=0;
-            double impuesto = 0;
+            double impuesto =0;
 
-            if (producto.esImportado()) {
-                impuesto = (precioVenta - descuento) * 0.12; // 12% de impuesto para productos importados
-                System.out.println(impuesto);
-            }
             if (producto instanceof Bebida) {
                 descuento = precioVenta * 0.10; // 10% de descuento para bebidas
                 Bebida bebida = (Bebida) producto;
+                if (producto.esImportado()){
+                    impuesto = (precioVenta - descuento) * 0.12; // 12% de impuesto para productos importados
+                }
                 System.out.println((i + 1) + ". " + producto.getDescripcion() + " - Precio de venta: $" + String.format("%.2f", precioVenta) + " (Descuento: -$" + String.format("%.2f", descuento) + ", Impuesto: +" + String.format("%.2f", impuesto) + ") = $" + String.format("%.2f", precioVenta - descuento + impuesto) + " - Calorías: " + bebida.calcularCalorias());
             } else if (producto instanceof Envasado) {
                 descuento = precioVenta * 0.15; // 15% de descuento para envasados
+                if (producto.esImportado()){
+                    impuesto = (precioVenta - descuento) * 0.12; // 12% de impuesto para productos importados
+                }
                 System.out.println((i + 1) + ". " + producto.getDescripcion() + " - Precio de venta: $" + String.format("%.2f", precioVenta) + " (Descuento: -$" + String.format("%.2f", descuento) + ", Impuesto: +" + String.format("%.2f", impuesto) + ") = $" + String.format("%.2f", precioVenta - descuento + impuesto));
             } else if (producto instanceof Limpieza) {
                 descuento = precioVenta * 0.20; // 20% de descuento para productos de limpieza
+                if (producto.esImportado()){
+                    impuesto = (precioVenta - descuento) * 0.12; // 12% de impuesto para productos importados
+                }
                 System.out.println((i + 1) + ". " + producto.getDescripcion() + " - Precio de venta: $" + String.format("%.2f", precioVenta) + " (Descuento: -$" + String.format("%.2f", descuento) + ", Impuesto: +" + String.format("%.2f", impuesto) + ") = $" + String.format("%.2f", precioVenta - descuento + impuesto));
             }
         }
