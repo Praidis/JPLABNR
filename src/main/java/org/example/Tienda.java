@@ -103,17 +103,17 @@ public class Tienda {
 
         if (producto instanceof Bebida) {
             if (cantidad > 12) {
-                System.out.println("No se pueden vender más de 12 bebidas en una sola compra");
+                System.out.println("No se pueden vender más de 12 unidades de un solo producto en una sola compra ");
                 return;
             }
         } else if (producto instanceof Envasado) {
             if (cantidad > 12) {
-                System.out.println("No se pueden vender más de 12 envasados en una sola compra");
+                System.out.println("No se pueden vender más de 12 unidades de un solo producto en una sola compra ");
                 return;
             }
         } else if (producto instanceof Limpieza) {
             if (cantidad > 12) {
-                System.out.println("No se pueden vender más de 12 limpiezas en una sola compra");
+                System.out.println("No se pueden vender más de 12 unidades de un solo producto en una sola compra ");
                 return;
             }
         }

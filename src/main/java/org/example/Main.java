@@ -155,6 +155,8 @@ public class Main {
         double precio = scanner.nextDouble();
         System.out.println("Ingrese la cantidad del producto:");
         int cantidad = scanner.nextInt();
+        System.out.println("Ingrese el Porcentaje de Ganancia (Max: 20%)");
+        double porcentajeGanancia = scanner.nextInt();
         System.out.println("Ingrese la graduación alcohólica:");
         double graduacionAlcoholica = scanner.nextDouble();
         System.out.println("¿Es un producto importado? (true/false)");
@@ -166,7 +168,7 @@ public class Main {
         // Verifica si el saldo en caja es suficiente para cubrir el costo del producto
         if (tienda.getSaldoCaja() >= costoTotal) {
             String codigo = tienda.generarIdBebida(); // Llama al método específico para generar el ID de la bebida
-            Bebida bebida = new Bebida(codigo, descripcion, cantidad, precio, 0, graduacionAlcoholica, importado);
+            Bebida bebida = new Bebida(codigo, descripcion, cantidad, precio,porcentajeGanancia, graduacionAlcoholica, importado);
             tienda.agregarProducto(bebida);
             System.out.println("Se vendió " + cantidad + " unidades de " + descripcion + " con código " + codigo + " a la tienda.");
         } else {
