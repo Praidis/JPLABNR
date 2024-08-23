@@ -124,7 +124,7 @@ public class Tienda {
         double precioTotal = unidadesAVender * producto.calcularPrecioVenta();
         saldoCaja += precioTotal;
         producto.setCantidad(unidadesDisponibles - unidadesAVender);
-        System.out.println("Venta realizada con éxito. Se vendieron " + unidadesAVender + " unidades de " + producto.getDescripcion());
+        System.out.println("Se vendieron " + unidadesAVender + " unidades de " + producto.getDescripcion() + "= " + precioTotal);
 
         if (producto.getCantidad() == 0) {
             producto.setDisponible(false);
